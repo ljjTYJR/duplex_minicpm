@@ -1,0 +1,52 @@
+{
+  "A1_chat_text": {
+    "tool_called": true,
+    "output": "<tool_call>\n{\"name\": \"get_weather\", \"arguments\": {\"city\": \"Nanjing\"}}\n</tool_call>",
+    "parsed_call": {
+      "name": "get_weather",
+      "arguments": {
+        "city": "Nanjing"
+      }
+    },
+    "tool_result": {
+      "temp": "22C",
+      "sky": "cloudy"
+    },
+    "final_answer": "The current temperature in Nanjing is 22°C with cloudy skies."
+  },
+  "A2_chat_vision_audio": {
+    "tool_called": true,
+    "output": "<tool_call>\n{\"name\": \"get_current_weather\", \"arguments\": {\"location\": \"Nanjing\"}}\n</tool_call>",
+    "parsed_call": {
+      "name": "get_current_weather",
+      "arguments": {
+        "location": "Nanjing"
+      }
+    },
+    "tool_result": {
+      "temp": "22C",
+      "sky": "cloudy"
+    },
+    "final_answer": "The current temperature in Nanjing is 22 degrees Celsius, and the sky is cloudy."
+  },
+  "B1_duplex_vision_audio": {
+    "tool_called": false,
+    "decision": "listen",
+    "decision_probs": {
+      "<|listen|>": 0.7305853366851807,
+      "<|speak|>": 0.15313901007175446,
+      "<tool_call>": 5.888117584618158e-07,
+      "<|act_end|>": 0.04971695691347122
+    }
+  },
+  "B2_duplex_text": {
+    "tool_called": false,
+    "decision": "",
+    "decision_probs": {
+      "<|listen|>": 0.0014761392958462238,
+      "<|speak|>": 0.00042958103585988283,
+      "<tool_call>": 0.000644877552986145,
+      "<|act_end|>": 0.2561286985874176
+    }
+  }
+}
