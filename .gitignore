@@ -4,3 +4,6 @@ __pycache__/
 outputs/
 *.safetensors
 stage1_videos/
+.venv/
+.cache/
+.vscode/

@@ -2494,9 +2494,12 @@ class MiniCPMODuplex:
         instance.model.processor = instance.processor
 
         # Initialize TTS (same as __init__)
-        enable_float16 = get_param("enable_float16")
-        n_timesteps = get_param("n_timesteps")
-        instance.model.init_tts(enable_float16=enable_float16, n_timesteps=n_timesteps)
+        # duplex_minicpm: text-only output needs no vocoder, and init_tts hard-requires the optional
+        # Token2wav package (minicpmo-utils[all]); only build it when audio is actually requested.
+        if instance.generate_audio:
+            enable_float16 = get_param("enable_float16")
+            n_timesteps = get_param("n_timesteps")
+            instance.model.init_tts(enable_float16=enable_float16, n_timesteps=n_timesteps)
 
         instance.break_event = threading.Event()
         instance.session_stop_event = threading.Event()
