@@ -1,7 +1,6 @@
-# 计划：MiniCPM duplex SFT 加 action label + tool calling
+# 计划：MiniCPM duplex SFT 加 tool calling
 
-让 MiniCPM-o 4.5 的 duplex 流在 act 槽输出 action，其余行为（listen/speak 时序、问答）保持不变.
-其中 action 槽可以进行 `toll_calling`
+让 MiniCPM-o 4.5 的 duplex 在 speak 的时候能够输出工具调用 `tool_calling`，其余行为（listen/speak 时序、问答）保持不变.
 
 ## 已就绪（不用再做）
 
@@ -21,11 +20,8 @@
        ( <|listen|>
        | <|speak|> text… (<|chunk_eos|> | <|turn_eos|>) )
        [ <tool_call>{"name":…,"arguments":{…}}</tool_call> ]
-       <|act_end|>
 </unit>
 ```
-这里 `<|action_end|>`主要是表明model在这一个chunk的输出结束, 而
-
 相比较而言，如果是 **turn-based** 的对话方式下，token的排布如下:
 
 ```

@@ -3103,12 +3103,12 @@ class MiniCPMODuplex:
                 text_embeds = self.decoder.embed_token(text_token_ids_tensor)
 
                 # feed to decoder
-                if mode == "TEXT":
-                    # text-only mode: get logits from the last token
-                    self.pending_logits, _ = self.decoder.feed(text_embeds, return_logits=True)
-                else:
-                    # mixed mode: just feed, let other modality get logits
-                    self.decoder.feed(text_embeds)
+                # duplex_minicpm: upstream only took logits here in TEXT mode ("let other modality get
+                # logits"), but text is always fed last within a unit, so in mixed mode pending_logits
+                # kept the audio feed's value — bit-identical with and without the text, i.e. the
+                # decision token was sampled from a distribution that had not seen it. Always take the
+                # logits from the final feed of the unit.
+                self.pending_logits, _ = self.decoder.feed(text_embeds, return_logits=True)
 
                 # schema tracking: record text token IDs
                 for token_id in text_token_ids:

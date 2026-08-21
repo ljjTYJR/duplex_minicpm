@@ -7,3 +7,4 @@ stage1_videos/
 .venv/
 .cache/
 .vscode/
+data/
